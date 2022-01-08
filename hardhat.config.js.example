@@ -1,0 +1,14 @@
+require('@nomiclabs/hardhat-waffle');
+
+// to get url, visit https://dashboard.alchemyapi.io/
+// to get accounts, export private key from ethereum wallet
+
+module.exports = {
+  solidity: '0.8.0',
+  networks: {
+    ropsten: {
+      url: '',
+      accounts: [''],
+    },
+  },
+};
