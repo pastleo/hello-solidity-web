@@ -1,5 +1,8 @@
+// npx hardhat run scripts/deploy.js --network ropsten
+
 const main = async () => {
-  const transactionsFactory = await hre.ethers.getContractFactory("Transactions");
+  //const transactionsFactory = await hre.ethers.getContractFactory("Transactions");
+  const transactionsFactory = await hre.ethers.getContractFactory("SimpleAccountKVStorage");
   const transactionsContract = await transactionsFactory.deploy();
 
   await transactionsContract.deployed();

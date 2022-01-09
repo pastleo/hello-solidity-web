@@ -5,7 +5,7 @@
   "main": "index.js",
   "source": "www/index.html",
   "scripts": {
-    "dev": "parcel"
+    "dev": "hardhat compile && parcel"
   },
   "author": "",
   "license": "ISC",
