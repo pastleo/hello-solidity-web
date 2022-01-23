@@ -5,24 +5,43 @@
   <title></title>
 </head>
 <body>
-  <h1>Please open console and play</h1>
+  <h1>hello-solidity-web</h1>
+  <h2><a href='https://github.com/pastleo/hello-solidity-web' target='_blank'>https://github.com/pastleo/hello-solidity-web</a></h2>
+  <h3><a href='https://www.google.com/search?q=ropsten+faucet' target='_blank'>Request ETH from ropsten testnet faucet</a></h3>
+  <p>Learned from <a href='https://youtu.be/Wn_Kb3MR_cU' target='_blank'>https://youtu.be/Wn_Kb3MR_cU</a></p>
 
   <hr />
+  <hr />
 
+  <h4>SimpleAccountKVStorage</h4>
   <p>
-    <a id='transactions-etherscan-link' href="https://ropsten.etherscan.io" target="_blank">Transactions contract on etherscan</a>
+    <a href="https://github.com/pastleo/hello-solidity-web/blob/master/contracts/SimpleAccountKVStorage.sol" target="_blank">smartcontract source code</a>
+    <br />
     <a id='simple-account-kv-storage-etherscan-link' href="https://ropsten.etherscan.io" target="_blank">SimpleAccountKVStorage contract on etherscan</a>
   </p>
-
-  <hr />
-
   <div>
-    <button id='get-transactions-count'>get transactions count</button>
-    <button id='get-all-transactions'>get all transactions</button>
+    <input id='account-data' placeholder='data' />
+
+    <button id='get-account-data'>get account data</button>
+    <button id='set-account-data'>set account data</button>
+
+    <p id='account-data-result'></p>
   </div>
 
   <hr />
+  <hr />
 
+  <h4>Transactions (original smartcontract in the video)</h4>
+  <p>
+    <a href="https://github.com/pastleo/hello-solidity-web/blob/master/contracts/Transactions.sol" target="_blank">smartcontract source code</a>
+    <br />
+    <a id='transactions-etherscan-link' href="https://ropsten.etherscan.io" target="_blank">Transactions contract on etherscan</a>
+  </p>
+  <div>
+    <button id='get-transactions-count'>get transactions count</button>
+    <button id='get-all-transactions'>get all transactions</button>
+    <p id='transactions-result'></p>
+  </div>
   <div>
     <input id='amount' placeholder='amount' />
     <input id='address-to' placeholder='address to' />
@@ -30,15 +49,6 @@
     <input id='keyword' placeholder='keyword' />
 
     <button id='transfer-add-to-blockchain'>transfer and add to blockchain</button>
-  </div>
-
-  <hr />
-
-  <div>
-    <input id='account-data' placeholder='data' />
-
-    <button id='get-account-data'>get account data</button>
-    <button id='set-account-data'>set account data</button>
   </div>
 
   <script type="module" src="./main.js"></script>

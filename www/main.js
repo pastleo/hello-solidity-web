@@ -73,6 +73,8 @@ async function getTransactionsCount() {
   const transactionsCount = await transactionsContract.getTransactionCount();
   const transactionsCountNumber = transactionsCount.toNumber();
   console.log({ transactionsCountNumber });
+
+  document.getElementById('transactions-result').textContent = `transactionsCountNumber: ${transactionsCountNumber}`;
 }
 
 async function getAllTransactions() {
@@ -84,6 +86,7 @@ async function getAllTransactions() {
   const allTransactions = await transactionsContract.getAllTransactions();
 
   console.log({ allTransactions });
+  document.getElementById('transactions-result').textContent = `allTransactions: ${JSON.stringify(allTransactions)}`;
 }
 
 async function getAccountData() {
@@ -96,6 +99,7 @@ async function getAccountData() {
   console.log({ data });
 
   document.getElementById('account-data').value = data;
+  document.getElementById('account-data-result').textContent = 'getAccountData OK!';
 }
 
 async function setAccountData() {
@@ -105,16 +109,26 @@ async function setAccountData() {
 
   const data = document.getElementById('account-data').value;
 
-  console.log('simpleAccountKVStorageContract.set...');
-  const contractOperation = await simpleAccountKVStorageContract.set(data);
-  console.log({ contractOperation });
+  try {
+    console.log('simpleAccountKVStorageContract.set...');
+    const contractOperation = await simpleAccountKVStorageContract.set(data);
+    console.log({ contractOperation });
 
-  console.log(`Loading - ${contractOperation.hash}`);
-  await contractOperation.wait();
-  console.log(`Success - ${contractOperation.hash}`);
+    console.log(`Loading - ${contractOperation.hash}`);
+    document.getElementById('account-data-result').textContent = `setAccountData: waiting ${contractOperation.hash}...`;
+    await contractOperation.wait();
+    console.log(`Success - ${contractOperation.hash}`);
+    document.getElementById('account-data-result').textContent = `setAccountData: OK! [${contractOperation.hash}]`;
+  } catch (err) {
+    console.error(err);
+    document.getElementById('account-data-result').textContent = `setAccountData Err: ${err.message}`;
+  }
 }
 
-if (ethereum) {
+function main() {
+  if (!ethereum) return alert('please install metamask!');
+  if (ethereum.networkVersion !== '3') return alert('please switch to Ropsten Testnet, this is for test and demo only!');
+
   transactionsContract = createEthereumContract(TRANSACTION_CONTRACT_ADDR, TransactionsContractABI);
   simpleAccountKVStorageContract = createEthereumContract(SIMPLE_ACCOUNT_KV_STORAGE_CONTRACT_ADDR, SimpleAccountKVStorageContractABI);
   console.log({
@@ -131,6 +145,8 @@ if (ethereum) {
 
   document.getElementById('get-account-data').addEventListener('click', getAccountData);
   document.getElementById('set-account-data').addEventListener('click', setAccountData);
-} else {
-  return alert('please install metamask!');
 }
+
+setTimeout(() => {
+  main();
+}, 100);

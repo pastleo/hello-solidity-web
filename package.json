@@ -2,19 +2,21 @@
   "name": "hello-smartcontract-web",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
   "source": "www/index.html",
   "scripts": {
-    "dev": "hardhat compile && parcel"
+    "dev": "hardhat compile && parcel",
+    "build": "hardhat compile && rm -rf ./dist && parcel build --public-url ./"
   },
   "author": "",
   "license": "ISC",
+  "dependencies": {
+    "ethers": "^5.5.3"
+  },
   "devDependencies": {
     "@nomiclabs/hardhat-ethers": "^2.0.4",
     "@nomiclabs/hardhat-waffle": "^2.0.1",
     "chai": "^4.3.4",
     "ethereum-waffle": "^3.4.0",
-    "ethers": "^5.5.3",
     "hardhat": "^2.8.2",
     "parcel": "^2.1.1"
   }
